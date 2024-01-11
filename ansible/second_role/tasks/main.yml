@@ -1,0 +1,12 @@
+---
+# tasks file for second_role
+- name: ADDING USERS TO GROUPS
+  user:
+    name: "{{ item }}"
+    state: present
+    groups: wheel
+  loop:
+    - testuser1
+    - randynewman
+    - babyyoda
+    - charlesbarkley
