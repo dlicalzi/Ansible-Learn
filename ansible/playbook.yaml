@@ -1,31 +1,30 @@
 
 - name: My First playbook
-  hosts: tags_Name_DL_ansible_server
   hosts: tags_Name_Dl_worker
-  gather_facts: true
+  gather_facts: false
   become: true
   vars_files:
     - "var.yaml"
   tasks: 
-    - debug: msg="my boot image is {{ ansible_cmdline.BOOT_IMAGE }}"
-    - name: install the latest apache version
-      yum:
-        name: httpd
-        state: latest
-    - name: start service httpd, if not started
-      service:
-        name: httpd
-        state: started
-        enabled: true
-    - name: change default index file #ansible localhost -m file -a "path=/var/www/html/index.html state=absent"
-      file:
-        path: /var/www/html/index.html
-        state: absent
+    # - debug: msg="my boot image is {{ ansible_cmdline.BOOT_IMAGE }}"
+    # - name: install the latest apache version
+    #   yum:
+    #     name: httpd
+    #     state: latest
+    # - name: start service httpd, if not started
+    #   service:
+    #     name: httpd
+    #     state: started
+    #     enabled: true
+    # - name: change default index file #ansible localhost -m file -a "path=/var/www/html/index.html state=absent"
+    #   file:
+    #     path: /var/www/html/index.html
+    #     state: absent
     - name: creating file
       file:
-        path: /var/www/html/index.html
+        path: /var/www/html/test.txt
         state: touch
     - name: add text to html
       lineinfile:
-        path: /var/www/html/index.html
+        path: /var/www/html/test.txt
         line: <h1> WORT WORT </h1>
