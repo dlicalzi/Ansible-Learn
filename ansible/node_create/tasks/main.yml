@@ -37,3 +37,14 @@
         timeout: 240
       when: ec2.changed == true
       loop: "{{ ec2.instances }}"
+    - name: Determine number of instances
+      set_fact:
+        instance_ids_count: "{{ ec2.instances | length }}"
+    - name: instance ids
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ ec2.instance_ids}}"
+    - name: number of running instances
+      debug:
+        msg: "{{ instance_ids_count }}"
+  tags: ['never', 'create']
