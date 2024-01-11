@@ -11,3 +11,4 @@
     # - "second_role"
     - "bucket_create"
     - "node_create"
+    - "send_logs]"
