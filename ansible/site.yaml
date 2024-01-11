@@ -1,11 +1,12 @@
 
-- name: My First playbook
-  hosts: tags_Name_Dl_worker
-  gather_facts: false
+- name: Create nodes in bucket
+  hosts: tags_Name_DL_ansible_server
+  gather_facts: true
   become: true
   vars_files:
     - "var.yaml"
 
   roles:
-    - "first_role"
-    - "second_role"
+    # - "first_role"
+    # - "second_role"
+    - "bucket_create"
