@@ -9,6 +9,6 @@
   roles:
     # - "first_role"
     # - "second_role"
-    - "bucket_create"
-    - "node_create"
+    # - "bucket_create"
+    # - "node_create"
     - "send_logs]"

@@ -2,30 +2,50 @@
 # tasks file for send_logs]
 - name: send logs to s3
   block:
-    - name: ensure http is on
-      yum: httpd
-      state: latest
-    - name: start sttpp
+    - name: ensure httpd is installed
+      yum:
+        name: httpd
+        state: latest
+
+    - name: start httpd
       service:
         name: httpd
         state: started
         enabled: true
-    - name: python an pip are on
+
+    - name: ensure python and pip are installed
       yum:
         name:
-          - python
-          -pip
-    - name: make sure boto, boto3 and botocore installed
+          - python3  
+          - python3-pip  
+        state: present
+
+    - name: ensure boto, boto3, and botocore are installed
       pip:
         name: "{{ item }}"
       loop:
         - boto
         - boto3
         - botocore
+
     - name: save folder name
       set_fact:
         folder_name: "{{ hostvars[inventory_hostname]['public_dns_name']}}"
-    - name: create folder for instance in s3
-      aws_bucket: httpdlogs-dl
-      mode: create
-      object: "{{ folder_name }}"
+
+    # The task for creating a folder in S3 might need revision based on your specific needs
+
+    - name: deposit error log
+      aws_s3: 
+        bucket: httpdlogs-dl  
+        mode: put
+        object: "{{ folder_name }}/{{ file_name }}"
+        src: "{{ filepath }}"
+      register: putresult
+
+    - debug:
+        msg: "Uploaded to {{ putresult.msg }} and the S3 object url is {{ putresult.url }}"
+      when: putresult.changed
+
+    - debug:
+        msg: "Folder name is {{ folder_name }}"
+
