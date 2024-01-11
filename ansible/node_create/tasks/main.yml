@@ -3,12 +3,12 @@
 - name: launch ec2 instac
   block:
     - name: make sure boto, boto3 and botocore installed
-        pip:
-            name: "{{ item }}"
-        loop:
-          - boto
-          - boto3
-          - botocore
+      pip:
+          name: "{{ item }}"
+      loop:
+        - boto
+        - boto3
+        - botocore
     - name: create ec2 inst
       ec2_instance:
         name: worker-nodes
