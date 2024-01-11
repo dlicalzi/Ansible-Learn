@@ -1,0 +1,5 @@
+---
+# vars file for first_role
+line: "EXTRA CREDIT"
+filepath: /home/ec2-user/ansible/Extra_credit.txt
+file_name: Extra_credit
