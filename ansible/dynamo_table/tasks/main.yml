@@ -1,0 +1,14 @@
+---
+# tasks file for dynamo_table
+- name: Create dynamoDB Table
+  dynamodb_table:
+    name: "{{ dynamodb_table_name }}"
+    hash_key_name: "{{ dynamodb_hash_key_name }}"
+    hash_key_type: "{{ dynamodb_hash_key_type }}"
+    read_capacity: "{{ dynamodb_read_capacity }}"
+    write_capacity: "{{ dynamodb_write_capacity }}"
+    range_key_name: "{{ dynamodb_range_key_name }}"
+    range_key_type: "{{ dynamodb_range_key_type }}"
+    state: "present"
+    region: "us-east-1" 
+    tags: "{{ dynamodb_tags }}"

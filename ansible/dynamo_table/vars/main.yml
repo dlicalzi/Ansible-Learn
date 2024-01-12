@@ -1,0 +1,12 @@
+---
+# vars file for dynamo_table
+dynamodb_table_name: "dlextracreds"
+dynamodb_hash_key_name: "PrimaryKey"
+dynamodb_hash_key_type: "STRING"
+dynamodb_read_capacity: 5
+dynamodb_write_capacity: 5
+dynamodb_range_key_name: "SortKey"
+dynamodb_range_key_type: "STRING"
+dynamodb_tags:
+  Environment: "dev"
+  Project: "EXTRACRED"

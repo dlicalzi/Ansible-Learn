@@ -11,5 +11,6 @@
     # - "second_role"
     # - "bucket_create"
     # - "node_create"
-    - "send_logs]"
-    - "first_role_EXTRA"
+    # - "send_logs]"
+    # - "first_role_EXTRA"
+    - "dynamo_table"
